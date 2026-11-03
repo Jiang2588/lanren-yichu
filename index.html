@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f6f2ea">
-<title>衣序 · 天气穿搭</title>
+<title>懒人衣橱 · 天气穿搭</title>
 <style>
 /* ============ 基础 ============ */
 *,*::before,*::after{box-sizing:border-box}
@@ -568,8 +568,8 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 <body>
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="#" aria-label="衣序首页">
-      <span class="brand-mark">衣序</span>
+    <a class="brand" href="#" aria-label="懒人衣橱首页">
+      <span class="brand-mark">懒人衣橱</span>
       <span class="brand-sub">WARDROBE<br>WEATHER</span>
     </a>
     <div class="topbar-right">
@@ -659,7 +659,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
   </div>
 
   <footer class="footer">
-    <span>衣序 · WARDROBE / WEATHER</span>
+    <span>懒人衣橱 · WARDROBE / WEATHER</span>
     <span>数据仅保存在本机 · 无账号 · 无追踪</span>
   </footer>
 </main>
@@ -877,7 +877,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
   </div>
   <div class="sheet-section">
     <div class="sheet-section-title">关于</div>
-    <p class="hint">衣序是一份单页衣橱工具：衣物数据保存在当前浏览器，不上传服务器。天气数据由 Open-Meteo 提供，需要联网；离线时请手动填写天气。扫描录入在本地完成：类别建议约 60–75% 准确，主色较稳定，图案与防雨无法可靠识别，复杂背景可能去背不完整，请逐项确认。搭配结果基于保暖、防雨防风、配色、色系、图案、风格、廓形、场合与偏好学习的启发式评分，仅供参考。</p>
+    <p class="hint">懒人衣橱是一份单页衣橱工具：衣物数据保存在当前浏览器，不上传服务器。天气数据由 Open-Meteo 提供，需要联网；离线时请手动填写天气。扫描录入在本地完成：类别建议约 60–75% 准确，主色较稳定，图案与防雨无法可靠识别，复杂背景可能去背不完整，请逐项确认。搭配结果基于保暖、防雨防风、配色、色系、图案、风格、廓形、场合与偏好学习的启发式评分，仅供参考。</p>
     <p class="hint" style="margin-top:10px;color:var(--ink-3)">构建版本 / BUILD 1103-4</p>
   </div>
   <input type="file" id="importInput" accept="application/json,.json" hidden>
@@ -1737,7 +1737,7 @@ function renderOutfit(){
   const fb = currentOutfit.feedback || '';
   host.innerHTML = `<div class="look-card card-enter">
     <div class="look-masthead">
-      <span class="lm-brand">衣序 · 今日搭配 <em>／</em> ${esc(OCCASIONS[lookCtx.occasion]||'通勤')} · ${esc(THERMALS[lookCtx.thermal]||'适中')}</span>
+      <span class="lm-brand">懒人衣橱 · 今日搭配 <em>／</em> ${esc(OCCASIONS[lookCtx.occasion]||'通勤')} · ${esc(THERMALS[lookCtx.thermal]||'适中')}</span>
       <span>${esc((currentOutfit.date||todayKey()).slice(5).replace('-','.'))}</span>
     </div>
     <div class="look-stage" aria-label="立体衣柜搭配展示">
@@ -2062,9 +2062,10 @@ async function createShareImage(){
   ctx.fillStyle='#fffdf8'; roundRect(ctx,28,28,W-56,H-56,30); ctx.fill();
   ctx.restore();
   ctx.fillStyle='#282520'; ctx.font='400 30px "Songti SC","Noto Serif SC","SimSun",Georgia,serif';
-  ctx.fillText('衣序', pad, 116);
+  const brandW = ctx.measureText('懒人衣橱').width;
+  ctx.fillText('懒人衣橱', pad, 116);
   ctx.fillStyle='#736d61'; ctx.font='400 14px "PingFang SC","Microsoft YaHei",sans-serif';
-  ctx.fillText('今日搭配', pad+72, 113);
+  ctx.fillText('今日搭配', pad+brandW+16, 113);
   ctx.textAlign='right';
   ctx.fillText(new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric'}), W-pad, 113);
   ctx.textAlign='left';
@@ -2115,7 +2116,7 @@ async function createShareImage(){
   });
   ctx.strokeStyle='rgba(40,37,32,.08)'; ctx.beginPath(); ctx.moveTo(pad,H-96); ctx.lineTo(W-pad,H-96); ctx.stroke();
   ctx.fillStyle='#736d61'; ctx.font='400 13px "PingFang SC","Microsoft YaHei",sans-serif';
-  ctx.fillText('衣序 · 今日搭配', pad, H-58);
+  ctx.fillText('懒人衣橱 · 今日搭配', pad, H-58);
   ctx.textAlign='right'; ctx.fillText('WARDROBE / WEATHER', W-pad, H-58);
   return canvas;
 }
@@ -2139,7 +2140,7 @@ async function saveShareImage(){
     if(!blob) throw new Error('生成失败');
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href=url; a.download=`衣序-${todayKey()}.png`;
+    a.href=url; a.download=`懒人衣橱-${todayKey()}.png`;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(()=>URL.revokeObjectURL(url),1500);
     toast('搭配图已保存');
@@ -2941,7 +2942,7 @@ async function refreshWeather(){
 /* ---------- 备份 ---------- */
 function exportBackup(){
   const data = {
-    app:'衣序 · 衣橱天气搭配',
+    app:'懒人衣橱 · 衣橱天气搭配',
     version:1,
     exportedAt:new Date().toISOString(),
     items
@@ -2950,7 +2951,7 @@ function exportBackup(){
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `衣序-衣橱备份-${todayKey()}.json`;
+  a.download = `懒人衣橱-衣橱备份-${todayKey()}.json`;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),1500);
   toast(`已导出 ${items.length} 件衣物`);
