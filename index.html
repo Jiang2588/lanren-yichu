@@ -144,7 +144,7 @@ ul{list-style:none;padding:0}
 .look-stage::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:
   radial-gradient(46% 34% at 50% 2%,rgba(255,248,228,.62),rgba(255,248,228,0) 72%),
   linear-gradient(90deg,rgba(48,34,18,.16),transparent 14%,transparent 86%,rgba(48,34,18,.16))}
-.look-stage::after{content:"";position:absolute;left:13%;right:13%;bottom:4%;height:9%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(38,28,16,.32),rgba(38,28,16,0) 70%);filter:blur(4px);pointer-events:none;z-index:1}
+.look-stage::after{content:"";position:absolute;left:13%;right:13%;bottom:4%;height:9%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(38,28,16,.32),rgba(38,28,16,0) 70%);pointer-events:none;z-index:1}
 .stage-scene{position:absolute;inset:0;perspective:880px;perspective-origin:50% 44%}
 .closet{position:absolute;left:6%;right:6%;top:9%;bottom:13%;transform-style:preserve-3d;transform:rotateX(calc(2deg + var(--tiltY,0) * 2deg)) rotateY(calc(-7deg + var(--tiltX,0) * 4deg));transition:transform .25s var(--ease)}
 .closet-back{position:absolute;inset:0;border-radius:7px;transform:translateZ(-62px);background:
@@ -164,7 +164,7 @@ ul{list-style:none;padding:0}
   linear-gradient(180deg,#e2c79b 0%,#c6a170 42%,#9d7549 100%);
   box-shadow:0 16px 22px -12px rgba(50,34,14,.62),inset 0 1px 0 rgba(255,255,255,.6),inset 0 -3px 6px rgba(60,38,14,.35);transform:translateZ(34px)}
 .closet-shelf::before{content:"";position:absolute;left:-1%;right:-1%;bottom:100%;height:30px;background:linear-gradient(180deg,rgba(64,38,12,0),rgba(64,38,12,.26));pointer-events:none}
-.closet-frame{position:absolute;inset:0;transform:translateZ(34px);transform-style:preserve-3d;pointer-events:none;filter:drop-shadow(0 20px 24px rgba(44,30,14,.34))}
+.closet-frame{position:absolute;inset:0;transform:translateZ(34px);transform-style:preserve-3d;pointer-events:none}
 .cf{position:absolute;background:
   repeating-linear-gradient(92deg,rgba(86,56,24,.09) 0 1px,transparent 1px 7px),
   linear-gradient(160deg,#b18c62,#8a6741 46%,#6d4e30)}
@@ -191,20 +191,20 @@ ul{list-style:none;padding:0}
 @keyframes doorOpenR{0%{transform:translateZ(46px) rotateY(0);opacity:1}68%{transform:translateZ(46px) rotateY(88deg);opacity:1}100%{transform:translateZ(46px) rotateY(104deg);opacity:0}}
 .garment{position:absolute;left:var(--x);top:var(--y,auto);bottom:var(--bottom,auto);transform-style:preserve-3d;transform:translateX(-50%) translateZ(var(--z)) rotateZ(var(--rot));transition:transform .22s var(--ease)}
 .garment:hover,.garment:focus-visible{transform:translateX(-50%) translateZ(calc(var(--z) + 26px)) rotateZ(var(--rot)) scale(1.03);outline:none}
-.garment-float{transform-style:preserve-3d;animation:garmentPop .62s cubic-bezier(.22,1.06,.3,1) both;animation-delay:calc(420ms + var(--i) * 130ms)}
-.garment-drift{position:relative;transform-style:preserve-3d;animation:garmentDrift 6.6s ease-in-out infinite;animation-delay:calc(1150ms + var(--i) * 140ms)}
+.garment-float{animation:garmentPop .62s cubic-bezier(.22,1.06,.3,1) both;animation-delay:calc(420ms + var(--i) * 130ms)}
+.garment-drift{position:relative;animation:garmentDrift 6.6s ease-in-out 2;animation-delay:calc(1150ms + var(--i) * 140ms)}
 @keyframes garmentPop{
-  0%{opacity:0;transform:translate3d(0,44px,-90px) rotateZ(-7deg) scale(.78);filter:blur(7px)}
-  56%{opacity:1;filter:blur(0)}
+  0%{opacity:0;transform:translate3d(0,44px,-90px) rotateZ(-7deg) scale(.78)}
+  56%{opacity:1}
   100%{opacity:1;transform:translate3d(0,0,0) rotateZ(0) scale(1)}}
 @keyframes garmentDrift{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
 .hanger{position:absolute;left:50%;bottom:calc(100% - 1px);width:auto;height:34px;transform:translateX(-50%);color:#ab8852;opacity:.9;filter:drop-shadow(0 2px 3px rgba(40,30,16,.26));z-index:0}
 .garment-frame{position:relative;z-index:1;border-radius:14px;overflow:hidden;background:linear-gradient(165deg,#fffdf8,#f0e8da);border:1px solid rgba(40,37,32,.09);box-shadow:0 20px 30px -20px rgba(40,34,24,.5),0 3px 7px rgba(40,37,32,.08)}
 .garment-frame img{display:block;width:calc(var(--h) * .75);height:var(--h);object-fit:cover}
 .garment.cutout .garment-frame{background:transparent;border:0;box-shadow:none;overflow:visible;border-radius:0}
-.garment.cutout .garment-frame img{width:auto;height:var(--h);max-width:none;object-fit:contain;padding:0;filter:drop-shadow(0 12px 15px rgba(46,34,18,.22)) drop-shadow(0 3px 5px rgba(46,34,18,.12))}
+.garment.cutout .garment-frame img{width:auto;height:var(--h);max-width:none;object-fit:contain;padding:0;filter:drop-shadow(0 10px 13px rgba(46,34,18,.24))}
 .garment.shelf .garment-frame{box-shadow:none}
-.garment .lock-btn{position:absolute;top:5px;right:5px;width:18px;height:18px;opacity:0;transform:scale(.86);z-index:7;background:rgba(255,253,248,.78);border:1px solid rgba(255,253,248,.7);backdrop-filter:blur(4px);box-shadow:0 1px 3px rgba(40,37,32,.12);transition:opacity .2s var(--ease),transform .2s var(--ease),background .2s var(--ease)}
+.garment .lock-btn{position:absolute;top:5px;right:5px;width:18px;height:18px;opacity:0;transform:scale(.86);z-index:7;background:rgba(255,253,248,.92);border:1px solid rgba(255,253,248,.7);box-shadow:0 1px 3px rgba(40,37,32,.12);transition:opacity .2s var(--ease),transform .2s var(--ease),background .2s var(--ease)}
 .garment:hover .lock-btn,.garment:focus-visible .lock-btn,.garment .lock-btn:focus-visible,.garment .lock-btn.active{opacity:1;transform:scale(1)}
 .garment .lock-btn.active{background:var(--accent);color:#fff;border-color:transparent}
 .garment .lock-btn svg{width:9px;height:9px}
@@ -3371,7 +3371,7 @@ function demoImage(kind, hex, name){
   }
   return trimCanvas(canvas).toDataURL('image/webp',.9);
 }
-function buildDemoItems(){
+async function buildDemoItems(onProgress){
   const defs = [
     ['雾白棉质衬衫','top',2,'smart','solid','regular',[],true,'#e7e1d4'],
     ['炭灰针织衫','top',3,'casual','solid','regular',['autumn','winter'],false,'#4b4a46'],
@@ -3386,15 +3386,19 @@ function buildDemoItems(){
     ['酒红真丝连衣裙','dress',3,'formal','solid','long',['spring','autumn'],false,'#7c3038'],
     ['棕色皮质托特包','accessory',2,'smart','solid','regular',[],true,'#6c4a37']
   ];
-  return defs.map(d=>{
-    const [name,category,warmth,style,pattern,length,seasons,rainOk,colorHex]=d;
-    return {id:uid(),name,category,warmth,style,pattern,length,seasons,rainOk,colorHex,colorName:colorName(colorHex),img:demoImage(category,colorHex,name),cutout:true,createdAt:Date.now()};
-  });
+  const out=[];
+  for(let i=0;i<defs.length;i++){
+    const [name,category,warmth,style,pattern,length,seasons,rainOk,colorHex]=defs[i];
+    out.push({id:uid(),name,category,warmth,style,pattern,length,seasons,rainOk,colorHex,colorName:colorName(colorHex),img:demoImage(category,colorHex,name),cutout:true,createdAt:Date.now()});
+    if(onProgress) onProgress(i+1,defs.length);
+    if(i<defs.length-1) await new Promise(r=>setTimeout(r,0));
+  }
+  return out;
 }
 async function seedDemo(){
   if(items.length && !confirm('当前衣橱已有衣物，仍要加入示例吗？')) return;
   try{
-    const demo=buildDemoItems();
+    const demo=await buildDemoItems((done,total)=>toast(`正在绘制示例 ${done}/${total}`));
     await Store.bulkPut(demo);
     items=[...demo,...items];
     renderAll();
@@ -3427,13 +3431,21 @@ function handleAction(action){
   }
 }
 function bindEvents(){
+  let tiltEvt=null, tiltRaf=0;
   document.addEventListener('pointermove', e=>{
     if(e.pointerType==='touch') return;
     const stage=e.target.closest && e.target.closest('.look-stage');
     if(!stage) return;
-    const r=stage.getBoundingClientRect();
-    stage.style.setProperty('--tiltX', ((e.clientX-r.left)/r.width-.5)*2);
-    stage.style.setProperty('--tiltY', ((e.clientY-r.top)/r.height-.5)*2);
+    tiltEvt={stage,x:e.clientX,y:e.clientY};
+    if(tiltRaf) return;
+    tiltRaf=requestAnimationFrame(()=>{
+      tiltRaf=0;
+      if(!tiltEvt) return;
+      const {stage:s,x,y}=tiltEvt;
+      const r=s.getBoundingClientRect();
+      s.style.setProperty('--tiltX', ((x-r.left)/r.width-.5)*2);
+      s.style.setProperty('--tiltY', ((y-r.top)/r.height-.5)*2);
+    });
   });
   document.addEventListener('pointerout', e=>{
     const stage=e.target.closest && e.target.closest('.look-stage');
